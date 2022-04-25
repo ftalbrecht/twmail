@@ -24,7 +24,4 @@ mail = Mail.new(ARGF.read)
 task_uuid = `task-uuid \"#{mail.subject}\"`
 body = mail.text? ? mail.body.decoded : mail.text_part.body.decoded
 
-SEPARATOR = '-- '
-body = body.split(SEPARATOR)[0] if body.include?(SEPARATOR)
-
 `task '#{task_uuid}' annotate \"#{body}\"`
